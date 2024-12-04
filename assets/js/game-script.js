@@ -1,4 +1,4 @@
-import { RequestsSender, apiURL } from './request_sender.js';
+import { RequestsSender, apiURL } from 'https://alexandrares.github.io/GameJS/assets/js/request_sender.js';
 
 const handleApiResponse = r => {
     console.log(r);
