@@ -1,5 +1,4 @@
-import { RequestsSender, apiURL } from 'https://alexandrares.github.io/GameJS/assets/js/request_sender.js';
-
+import { RequestsSender, apiURL, logCallback, errorCallback } from "./request_sender.js";
 
 function showResponse(message = "", type = "error") {
   const responseElement = document.querySelector(".response-message");
