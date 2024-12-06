@@ -1,4 +1,3 @@
-// import { RequestsSender, apiURL, logCallback, errorCallback } from "./request_sender.js";
 import api from './service/ApiClient.js';
 
 function showResponse(message = "", type = "error") {
