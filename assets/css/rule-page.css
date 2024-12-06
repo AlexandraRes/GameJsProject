@@ -14,10 +14,12 @@
     visibility: visible;
     transition: opacity 1s ease, visibility 1s ease;
 }
+
 .hidden {
     opacity: 0;
     visibility: hidden;
 }
+
 .overlay-text {
     color: #fff;
     font-size: 2rem;
@@ -34,6 +36,7 @@
     text-align: center;
     color: #660410;
 }
+
 .text-rules h1 p {
     display: inline;
     font-weight: bold;
@@ -43,14 +46,17 @@
     animation: gradientShift 4s infinite;
     background-size: 400%;
 }
+
 ol li {
     margin-bottom: 15px;
 }
+
 main {
     margin-left: 150px;
     margin-right: 150px;
     margin-bottom: 100px;
 }
+
 .main-text {
     display: flex;
     height: 100%;
@@ -58,13 +64,14 @@ main {
     color: #a40417;
     flex-direction: column;
 }
+
 .image {
     text-align: center;
 }
 
 /* TOP BTN */
 #topBtn {
-    display: none; 
+    display: none;
     position: fixed;
     bottom: 20px;
     right: 30px;
@@ -78,6 +85,7 @@ main {
     padding: 15px;
     border-radius: 10px;
 }
+
 #topBtn:hover {
     background-color: #333;
 }
@@ -97,5 +105,37 @@ main {
     }
 }
 
+@media (max-width: 1064px) {
+    main {
+        margin: 50px;
+    }
 
+    img {
+        width: 500px;
+    }
+}
 
+@media (max-width: 600px) {
+    .overlay-text {
+        font-size: 1.2rem;
+        padding: 10px;
+    }
+
+    .text-rules {
+        font-size: 14px;
+        line-height: 1.2;
+    }
+
+    #topBtn {
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    main {
+        margin: 10px;
+    }
+
+    img {
+        width: 300px;
+    }
+}

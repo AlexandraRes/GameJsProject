@@ -5,6 +5,17 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 2000); 
 });
 
+document.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', (event) => {
+        const href = link.getAttribute('href');
+        if (href === '/index.html') {
+            console.log('Переход на главную страницу!');
+        } else {
+            console.log(`Переход на: ${href}`);
+        }
+    });
+});
+
 document.querySelectorAll('nav ul li a').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -31,10 +42,6 @@ function scrollToTop() {
     document.documentElement.scrollTop = 0;
 }
 
-// window.addEventListener('DOMContentLoaded', (event) => {
-//     // Проверяем, авторизован ли пользователь
-//     if (sessionStorage.getItem('userLoggedIn') !== 'true') {
-//       // Если не авторизован, перенаправляем на страницу авторизации
-//       window.location.href = '/authorization.html';
-//     }
-//   });
+
+
+

@@ -7,6 +7,7 @@ html {
     font-family: Arial, sans-serif;
     background-color: #ffdaf4;
 }
+
 html {
     scroll-behavior: smooth;
 }
@@ -17,6 +18,7 @@ nav {
     font-size: 22px;
     position: relative;
 }
+
 nav ol {
     list-style: none;
     display: grid;
@@ -24,6 +26,7 @@ nav ol {
     gap: 15px;
     padding: 0;
 }
+
 nav ul {
     list-style: none;
     display: grid;
@@ -31,48 +34,58 @@ nav ul {
     gap: 15px;
     padding: 0;
 }
+
 nav ol li {
     position: relative;
 }
+
 nav ul li {
     position: relative;
 }
+
 nav ol li a {
     text-decoration: none;
     color: #a40417;
     padding: 10px;
     transition: color 0.3s;
 }
+
 nav ul li a {
     text-decoration: none;
     color: #a40417;
     padding: 10px;
     transition: color 0.3s;
 }
+
 nav ol li a:hover {
     color: #f9ff68;
     text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
+
 nav ul li a:hover {
     color: #f9ff68;
     text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
+
 #menu {
     display: flex;
     justify-content: space-around;
     list-style: none;
     padding: 0;
-    margin-top: 50px;
 }
+
 #menu li {
     font-size: 24px;
     position: relative;
+    align-items: center;
+    display: flex;
 }
 
 /* FOOTER */
 .footer {
     padding-bottom: 10px;
 }
+
 .footer p {
     text-align: center;
     font-weight: bold;
@@ -81,4 +94,105 @@ nav ul li a:hover {
     color: transparent;
     animation: gradientShift 4s infinite;
     background-size: 400%;
+}
+
+/* MENU MODAL */
+.burger-menu {
+    position: relative;
+    z-index: 100;
+}
+
+.burger-icon {
+    font-size: 2rem;
+    cursor: pointer;
+    padding: 10px;
+    background: #333;
+    color: #fff;
+    border-radius: 5px;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 101;
+}
+
+.burger-menu-content {
+    position: fixed;
+    top: 0;
+    left: -380px;
+    width: 250px;
+    height: 100%;
+    background-color: #333;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    transition: left 0.3s ease-in-out;
+    z-index: 100;
+}
+
+.burger-menu-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.burger-menu-content ul li {
+    margin-bottom: 15px;
+}
+
+.burger-menu-content ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+.burger-menu-content ul li a:hover {
+    color: #ff5722;
+}
+
+.burger-menu-content.open {
+    left: 0;
+}
+
+.none {
+    display: none;
+}
+
+.modal-menu {
+    display: block;
+}
+
+.modal-menu a {
+    color: white;
+}
+
+@media (max-width: 1064px) {
+    .burger-menu {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .modal-hidden {
+        display: none;
+    }
+
+    nav ul {
+        display: block;
+    }
+
+    .none {
+        display: block;
+    }
+}
+
+/* BUTTON LOGOUT */
+.button-logout {
+    padding: 10px 20px;
+    border: none;
+    font-size: 20px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
 }

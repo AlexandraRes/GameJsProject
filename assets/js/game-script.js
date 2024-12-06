@@ -1,14 +1,13 @@
-import { RequestsSender, apiURL } from 'https://alexandrares.github.io/GameJS/assets/js/request_sender.js';
+// import { RequestsSender, apiURL } from 'https://alexandrares.github.io/GameJS/assets/js/request_sender.js';
+// const api = new RequestsSender(apiURL, handleApiResponse, handleApiError, true);
+// const handleApiResponse = async r => {
+//      response = await r;
+// }
 
-const handleApiResponse = r => {
-    console.log(r);
-}
-
-const handleApiError = r => {
-    console.log('error', r);
-}
-
-const api = new RequestsSender(apiURL, handleApiResponse, handleApiError, true);
+// const handleApiError = r => {
+//     console.log('error', r);
+// }
+import api from './service/ApiClient.js';
 
 // Основные переменные
 let playerName = '';
@@ -19,12 +18,12 @@ let userSequence = [];
 let isPlaying = false;
 
 // Получаем элементы модального окна и игры
-const modal = document.getElementById('modal');
-const nameInput = document.getElementById('name-input');
-const errorMessage = document.getElementById('error-message');
-const gameContainer = document.getElementById('game-container');
+// const modal = document.getElementById('modal');
+// const nameInput = document.getElementById('name-input');
+// const errorMessage = document.getElementById('error-message');
+// const gameContainer = document.getElementById('game-container');
 const playerNameDisplay = document.getElementById('player-name');
-const submitNameButton = document.getElementById('submit-name');
+// const submitNameButton = document.getElementById('submit-name');
 const startGameButton = document.getElementById('start-game');
 const logoutButton = document.getElementById('logout');
 const welcomeMessage = document.getElementById('welcome-message');
@@ -66,8 +65,6 @@ if (localStorage.getItem('currentUser')) {
         welcomeMessage.textContent = "Рады с вами познакомиться!";
     }
     playerNameDisplay.textContent = playerName;
-    modal.style.display = 'none';
-    gameContainer.style.display = 'block';
     document.getElementById('current-score').textContent = score;
     document.getElementById('high-score').textContent = highScore;
 } else {
@@ -75,49 +72,50 @@ if (localStorage.getItem('currentUser')) {
 }
 
 // Обработка нажатия на кнопку "Submit"
-submitNameButton.addEventListener('click', function () {
-    const name = nameInput.value.trim();
+// submitNameButton.addEventListener('click', function () {
+//     const name = nameInput.value.trim();
 
-    if (name === "") {
-        showError();
-    } else {
-        playerName = name.toLowerCase();
-        localStorage.setItem('currentUser', playerName);
-        playerNameDisplay.textContent = playerName;
-        if (!usersTable[playerName]) {
-            usersTable[playerName] = { score: 0, highScore: 0 };
-            welcomeMessage.textContent = "Рады с вами познакомиться, " + playerName + "!";
-        } else {
-            score = usersTable[playerName].score;
-            highScore = usersTable[playerName].highScore;
-            welcomeMessage.textContent = "Мы рады снова вас видеть, " + playerName + "!";
-        }
-        updateUsersTable();
-        closeModal();
-        document.getElementById('current-score').textContent = score;
-        document.getElementById('high-score').textContent = highScore;
-    }
-});
+//     if (name === "") {
+//         showError();
+//     } else {
+//         playerName = name.toLowerCase();
+//         localStorage.setItem('currentUser', playerName);
+//         playerNameDisplay.textContent = playerName;
+//         if (!usersTable[playerName]) {
+//             usersTable[playerName] = { score: 0, highScore: 0 };
+//             welcomeMessage.textContent = "Рады с вами познакомиться, " + playerName + "!";
+//         } else {
+//             score = usersTable[playerName].score;
+//             highScore = usersTable[playerName].highScore;
+//             welcomeMessage.textContent = "Мы рады снова вас видеть, " + playerName + "!";
+//         }
+//         updateUsersTable();
+//         closeModal();
+//         document.getElementById('current-score').textContent = score;
+//         document.getElementById('high-score').textContent = highScore;
+//     }
+// });
 
 startGameButton.addEventListener('click', startGame);
 
 // Функция для показа ошибки при пустом имени
-function showError() {
-    nameInput.classList.add('error');
-    errorMessage.style.display = 'block';
-}
+// function showError() {
+//     nameInput.classList.add('error');
+//     errorMessage.style.display = 'block';
+// }
 
 // Закрытие модального окна
-function closeModal() {
-    modal.style.display = 'none';
-    gameContainer.style.display = 'block';
-}
+// function closeModal() {
+//     modal.style.display = 'none';
+//     gameContainer.style.display = 'block';
+// }
 
 // Запуск игры
 function startGame() {
     isPlaying = true;
     startGameButton.removeEventListener('click', startGame);
     resetGame();
+    disableButtons();
     sounds.start.play();
     setTimeout(() => {
         nextRound();
@@ -223,21 +221,12 @@ async function endGame() {
     isPlaying = false;
     alert(`Игра окончена! Ваш счёт: ${score}`);
 
-    const scoreInput = document.getElementById("high-score");
-    const scoreValue = scoreInput.innerText.trim();
+    const response = await api.put(`players/${localStorage.getItem('currentUser')}`, { score: score });
 
-    const dataS = JSON.stringify({ score: scoreValue });
-    console.log("Отправка Score на сервер:", dataS);
-
-    api.httpGet('ping');
-    try {
-        const response = await api.httpPut(dataS, "players/o_c_t_0_b_e_r", {
-            "Content-Type": "application/json"
-        });
-        console.log("Ответ от сервера:", response);
-    } catch (error) {
-        console.error("Ошибка при отправке данных:", error);
+    if (response.error) {
+        localStorage.setItem('unsaved_score', score);
     }
+    
 
     usersTable[playerName].score = 0;
     updateUsersTable();
@@ -249,11 +238,12 @@ async function endGame() {
 // Обработка выхода из игры
 logoutButton.addEventListener('click', function () {
     localStorage.removeItem('currentUser');
-    playerName = '';
-    gameContainer.style.display = 'none';
-    modal.style.display = 'flex';
-    nameInput.value = '';
-    welcomeMessage.textContent = '';
+    // playerName = '';
+    // gameContainer.style.display = 'none';
+    // modal.style.display = 'flex';
+    // nameInput.value = '';
+    // welcomeMessage.textContent = '';
+    window.location.href = '/index.html';
     if (isPlayingMusic) {
         audioPlayer.pause();
         playIcon.textContent = '▶️';
@@ -261,18 +251,6 @@ logoutButton.addEventListener('click', function () {
         audioPlayer.volume = 1;
     }
 });
-
-// Смена цвета кнопок 
-const button = document.querySelectorAll('.button-logout');
-
-function changeButtonBackground() {
-    button.forEach(button => {
-        const randomColor = `#${Math.floor(Math.random() * 16777215).toString(16)}`;
-        button.style.backgroundColor = randomColor;
-    });
-}
-
-setInterval(changeButtonBackground, 200);
 
 // Музыка
 const playButton = document.getElementById('playButton');
@@ -291,30 +269,3 @@ playButton.addEventListener('click', () => {
         isPlayingMusic = true;
     }
 });
-
-
-//Requests
-
-// const currentUser = 'o_c_t_0_b_e_r';
-// const url = "https://d5dsv84kj5buag61adme.apigw.yandexcloud.net";
-
-// const put = async (score) => {
-//     try {
-//         await fetch(`${url}/players/${currentUser}`, {
-//             method: "PUT",
-//             body: JSON.stringify({ score }),
-//             credentials: "include",
-//             headers: {
-//                 "Content-Type": "application/json",
-//             },
-//         });
-//     } catch (e) {
-//         console.log(e);
-        
-//     }
-// }
-
-
-// 
-// document.querySelectorAll("input").forEach(clearErrorOnInput);
-// Получаем элементы

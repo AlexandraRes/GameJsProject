@@ -5,9 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Авторизация</title>
-    <!-- <link rel="icon" href="/assets/img/favicon.png" type="image/x-icon"> -->
+    <!-- Для локального использования  -->
+    <!-- <link rel="icon" href="/assets/img/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="/assets/css/index.css"> -->
+
+    <!-- Для GitHubPages использования  -->
     <link rel="icon" href="https://alexandrares.github.io/GameJS/assets/img/favicon.png">
-    <!-- <link rel="stylesheet" href="/assets/css/index.css"> -->
     <link rel="stylesheet" href="https://alexandrares.github.io/GameJS/assets/css/index.css">
 
 </head>
@@ -18,6 +21,10 @@
 <body class="content1">
     <div class="video-background">
         <video autoplay muted loop>
+            <!-- Для локального использования  -->
+            <!-- <source src="/assets/video.mp4" type="video/mp4"> -->
+
+            <!-- Для GitHubPages использования  -->
             <source src="https://alexandrares.github.io/GameJS/assets/video.mp4" type="video/mp4">
         </video>
     </div>
@@ -39,22 +46,14 @@
             </form>
             <div class="response-message"></div>
         </div>
-
-        <div class="score-container">
-            <label for="score-input">Введите ваш Score:</label>
-            <input type="number" id="score-input" placeholder="Введите значение" required>
-            <button id="send-score-btn">Отправить Score</button>
-        </div>
-
-        <!-- <div id="error-modal" class="hidden">
-            <p>Ой...кажется вас выбросило в открытый космос.<br>Зайдите еще раз</p>
-            <button id="close-modal-btn">Закрыть</button>
-        </div> -->
     </div>
+    <!-- Для локального использования  -->
     <!-- <script src="/assets/js/index.js" type="module"></script> -->
+
+    <!-- Для GitHubPages использования  -->
     <script src="https://alexandrares.github.io/GameJS/assets/js/index.js"></script>
 
-    
+
 </body>
 
 </html>
