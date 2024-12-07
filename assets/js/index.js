@@ -72,10 +72,16 @@ document.getElementById("login-btn").addEventListener("click", async () => {
   const unsavedScore = localStorage.getItem('unsaved_score');
   const currentUser = localStorage.getItem('currentUser');
 
-  if (unsavedScore && currentUser === username) {
+  // if (unsavedScore && currentUser === username) {
+  //   await api.put(`players/${currentUser}`, { score: Number(unsavedScore) });
+  //   localStorage.removeItem('unsaved_score');
+  // }
+
+  if (unsavedScore !== null && currentUser === username) {
     await api.put(`players/${currentUser}`, { score: Number(unsavedScore) });
     localStorage.removeItem('unsaved_score');
-  }
+}
+
 
   showResponse("Успешный успех, а сила в памяти!", "success");
   setTimeout(function () {
