@@ -234,7 +234,7 @@ logoutButton.addEventListener('click', function () {
     // modal.style.display = 'flex';
     // nameInput.value = '';
     // welcomeMessage.textContent = '';
-    window.location.href = '/index.html';
+    window.location.href = './index.html';
     if (isPlayingMusic) {
         audioPlayer.pause();
         playIcon.textContent = '▶️';
