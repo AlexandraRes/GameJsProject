@@ -1,9 +1,9 @@
-document.addEventListener("DOMContentLoaded", () => {
-    setTimeout(() => {
-        const overlay = document.querySelector('.overlay');
-        overlay.classList.add('hidden');
-    }, 2000); 
-});
+// document.addEventListener("DOMContentLoaded", () => {
+//     setTimeout(() => {
+//         const overlay = document.querySelector('.overlay');
+//         overlay.classList.add('hidden');
+//     }, 2000); 
+// });
 
 document.querySelectorAll('a').forEach((link) => {
     link.addEventListener('click', (event) => {
