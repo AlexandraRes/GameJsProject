@@ -80,7 +80,7 @@ document.getElementById("login-btn").addEventListener("click", async () => {
 
   showResponse("Успешный успех, а сила в памяти!", "success");
   setTimeout(function () {
-    window.location.href = 'https://alexandrares.github.io/GameJsProject/rules.html';
+    window.location.href = './rules.html';
   }, 2000);
   sessionStorage.setItem("userLoggedIn", true);
 
