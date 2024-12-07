@@ -37,7 +37,7 @@ document.getElementById("register-btn").addEventListener("click", async () => {
 
   const response = await api.post(`players`, {
     login: username,
-    password: hashedPassword 
+    password: hashedPassword
   });
 
   if (response.error) {
@@ -61,7 +61,7 @@ document.getElementById("login-btn").addEventListener("click", async () => {
 
   const response = await api.post(`login`, {
     login: username,
-    password: hashedPassword 
+    password: hashedPassword
   });
 
   if (response.error) {
@@ -72,15 +72,10 @@ document.getElementById("login-btn").addEventListener("click", async () => {
   const unsavedScore = localStorage.getItem('unsaved_score');
   const currentUser = localStorage.getItem('currentUser');
 
-  // if (unsavedScore && currentUser === username) {
-  //   await api.put(`players/${currentUser}`, { score: Number(unsavedScore) });
-  //   localStorage.removeItem('unsaved_score');
-  // }
-
-  if (unsavedScore !== null && currentUser === username) {
+  if (unsavedScore && currentUser === username) {
     await api.put(`players/${currentUser}`, { score: Number(unsavedScore) });
     localStorage.removeItem('unsaved_score');
-}
+  }
 
 
   showResponse("Успешный успех, а сила в памяти!", "success");
@@ -90,6 +85,6 @@ document.getElementById("login-btn").addEventListener("click", async () => {
   sessionStorage.setItem("userLoggedIn", true);
 
   console.log(response);
-  
+
   localStorage.setItem('currentUser', username);
 });
